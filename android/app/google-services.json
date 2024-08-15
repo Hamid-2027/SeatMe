@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "698870086535",
+    "project_id": "seatme-40d0a",
+    "storage_bucket": "seatme-40d0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698870086535:android:cd3276f8b441e4a7dfb122",
+        "android_client_info": {
+          "package_name": "com.seatme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDvjETZC9q8sDBJh4qhg9kwgxLumizgmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
