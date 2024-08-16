@@ -1,52 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import React, { useEffect } from 'react';
+import { View, Text } from 'react-native';
+// import { configureGoogleSignIn } from './src/googleSignInConfig.js'; // Ensure configuration is set up
+import GoogleSignIn from './src/GoogleSignIn'; // Import the GoogleSignIn component
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-const App = () => {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-
+export default function App() {
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    GoogleSignin.configure({
+      webClientId: 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+    });
   }, []);
-
-  if (initializing) return null;
-
-  if (!user) {
-    return (
-      <View>
-        <Text>Login</Text>
-      </View>
-    );
-  }
 
   return (
     <View>
-      <Text>Welcome {user.email}</Text>
+      <Text>Welcome to the App!</Text>
+      <GoogleSignIn />
     </View>
   );
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 24,
-  },
-});
-
-export default App;
