@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, StyleSheet } from 'react-native';
 import GoogleSignIn from './src/GoogleSignIn'; // Import the GoogleSignIn component
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/Screens/home-screen';
+import DetailsScreen from './src/Screens/details-screen';
+
 
 export default function App() {
   useEffect(() => {
@@ -10,11 +15,20 @@ export default function App() {
     });
   }, []);
 
+  const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the App!</Text>
-      <GoogleSignIn />
-    </View>
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer> 
+    //   <>
+    // <View style={styles.container}>
+    //   <Text style={styles.title}>Welcome to the App!</Text>
+    //   <GoogleSignIn />
+    // </View>
+    //   </>
   );
 }
 
