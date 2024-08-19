@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { Button, View, Text, StyleSheet,TouchableOpacity , ActivityIndicator } from 'react-native';
 import { onGoogleButtonPress } from './googleSignInConfig';
 
 function GoogleSignIn() {
@@ -19,15 +19,21 @@ function GoogleSignIn() {
   };
 
   return (
+    // <View style={styles.container}>
+    //   <Button
+    //     title="Sign in with Google"
+    //     onPress={handleGoogleSignIn}
+    //     disabled={loading}
+    //   />
+    //   {loading && <ActivityIndicator size="small" color="#0000ff" />}
+    //   {statusMessage ? <Text style={styles.statusMessage}>{statusMessage}</Text> : null}
+    // </View>
     <View style={styles.container}>
-      <Button
-        title="Sign in with Google"
-        onPress={handleGoogleSignIn}
-        disabled={loading}
-      />
-      {loading && <ActivityIndicator size="small" color="#0000ff" />}
-      {statusMessage ? <Text style={styles.statusMessage}>{statusMessage}</Text> : null}
-    </View>
+    <TouchableOpacity style={styles.googleButton} onPress={handleGoogleSignIn}>
+      {/* <MaterialCommunityIcons name="google" size={24} color="#fff" /> */}
+      <Text style={styles.buttonText}>Login with Google</Text>
+    </TouchableOpacity>
+  </View>
   );
 }
 
@@ -36,12 +42,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    backgroundColor: '#f5f5f5',
   },
-  statusMessage: {
-    marginTop: 10,
+  googleButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'green',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonText: {
+    color: '#fff',
     fontSize: 16,
-    color: 'black',
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 

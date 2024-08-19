@@ -12,7 +12,9 @@ type Props = {
 const DetailsScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Details Screen</Text>
+      <Text style={{color:'black'}}>Details Screen</Text>
+      <Text style={{color:'black'}}>Welcome to the App!</Text>
+
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );

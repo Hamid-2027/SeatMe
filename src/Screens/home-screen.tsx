@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './types';
+import GoogleSignIn from '../GoogleSignIn';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -9,14 +10,17 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      {/* <Text>Home Screen</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
-      />
+      /> */}
+    <View style={styles.container}>
+        <GoogleSignIn />
+      </View>
     </View>
   );
 };
@@ -29,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default LoginScreen;
