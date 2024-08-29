@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import DetailsScreen from './src/Screens/details-screen';
 import LoginScreen from './src/Screens/home-screen';
+import WelcomeScreen from './src/Screens/welcome-screen';
 
 
 
@@ -32,6 +33,8 @@ const App = () => {
         ) : (
           <Stack.Screen name="Auth" component={LoginScreen} />
         )}
+          <Stack.Screen name="welcome" component={WelcomeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

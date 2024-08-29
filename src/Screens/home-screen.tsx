@@ -13,11 +13,11 @@ type Props = {
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <Text>Home Screen</Text>
+      <Text>Home Screen</Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      /> */}
+        onPress={() => navigation.navigate('welcome')}
+      />
     <View style={styles.container}>
         <GoogleSignIn />
       </View>
