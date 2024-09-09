@@ -5,7 +5,8 @@ import auth from '@react-native-firebase/auth';
 import DetailsScreen from './src/Screens/details-screen';
 import LoginScreen from './src/Screens/home-screen';
 import WelcomeScreen from './src/Screens/welcome-screen';
-import { configureGoogleSignIn } from './src/configureGoogleSignIn';
+// import { configureGoogleSignIn } from './src/configureGoogleSignIn';
+import SplashScreen from 'react-native-splash-screen'
 
 
 
@@ -21,6 +22,11 @@ const App = () => {
       } else {
         setUser(null);
       }
+
+      setTimeout(()=>{
+        SplashScreen.hide();
+      },2000)
+
     });
 
     return () => unsubscribe();
