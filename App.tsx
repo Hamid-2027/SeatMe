@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
-import DetailsScreen from './src/Screens/details-screen';
-import LoginScreen from './src/Screens/home-screen';
-import WelcomeScreen from './src/Screens/welcome-screen';
+import DetailsScreen from './src/screens/details-screen';
+import LoginScreen from './src/screens/home-screen';
+import WelcomeScreen from './src/screens/welcome-screen';
 import { configureGoogleSignIn } from './src/configureGoogleSignIn';
 
 

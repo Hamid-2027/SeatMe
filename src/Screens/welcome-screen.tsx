@@ -3,8 +3,8 @@ import {useSelector , useDispatch} from 'react-redux';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './types';
-import { decrement, increment } from '../Redux/Slices/counterSlice';
-import { selectCount } from '../Redux/Slices/counterSlice';
+import { selectCount } from '../core/redux/slices/counterSlice';
+import { increment, decrement } from '../core/redux/slices/counterSlice';
 
 type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
