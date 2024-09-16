@@ -3,38 +3,44 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import DetailsScreen from './src/screens/details-screen';
-import LoginScreen from './src/screens/home-screen';
+import LoginScreen from './src/screens/login-screen';
 import WelcomeScreen from './src/screens/welcome-screen';
 import { configureGoogleSignIn } from './src/configureGoogleSignIn';
-
-
+import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const isAppReady = useSelector((state) => state.userAuth.isAppReady)
+  console.log("isAppReady...",isAppReady)
 
+   
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
+    const getUserLoginDetails = auth().onAuthStateChanged((user) => {
       if (user) {
-        setUser(user);
+        setUserData(userData);
+
       } else {
-        setUser(null);
+        setUserData(null);
+
       }
+  console.log("data...",isAppReady)
+
     });
 
-    return () => unsubscribe();
+    return () => getUserLoginDetails();
   }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {user ? (
-          <Stack.Screen name="Details" component={DetailsScreen} />
-        ) : (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!isAppReady ? (
           <Stack.Screen name="Auth" component={LoginScreen} />
+        ) : (
+        <Stack.Screen name="welcome" component={WelcomeScreen} />
         )}
-          <Stack.Screen name="welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

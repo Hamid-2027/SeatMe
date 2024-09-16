@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './types';
 import { selectCount } from '../core/redux/slices/counterSlice';
 import { increment, decrement } from '../core/redux/slices/counterSlice';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { setIsAppReady } from '../core/redux/slices/user-auth-slice';
 
 type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
@@ -13,11 +15,23 @@ type Props = {
 };
 
 const WelcomeScreen: React.FC<Props> = ({ navigation }) => {
-    //(state)=> state.counter.value
 const count = useSelector(selectCount);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
+  const handleGoogleLogout = async () => {
+    setLoading(true);
+    try {
+      await GoogleSignin.signOut();
+      dispatch(setIsAppReady(false))
+      setLoading(false);
 
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+
+    }
+  };
 
   return (
     <>
@@ -31,6 +45,10 @@ const count = useSelector(selectCount);
     </View>
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
+    
+    <TouchableOpacity style={styles.loginButton} onPress={handleGoogleLogout}>
+      {loading ? <ActivityIndicator size="small" color="#ffff" /> : <Text style={styles.loginButtonText}>Login with Google</Text>}
+      </TouchableOpacity>
     </>
   );
 };
@@ -40,6 +58,23 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign:'center',
+
+  },
+  loginButton: {
+    width: '70%',
+    height: 50,
+    backgroundColor: '#007BFF',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginBottom: 20,
+    marginVertical:21,
   },
 });
 

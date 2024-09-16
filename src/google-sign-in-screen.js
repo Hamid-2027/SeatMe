@@ -5,12 +5,19 @@ import {
   GoogleSignin,
   statusCodes
 } from '@react-native-google-signin/google-signin';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAppReady } from './core/redux/slices/user-auth-slice';
 
 const GoogleSignIn = () => {
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+    const navigation = useNavigation();
+    const dispatch= useDispatch();
+     const isAppReady = useSelector((state) => state.userAuth.isAppReady)
 
   useEffect(() => {
+    console.log("isAppReady",userInfo)
     GoogleSignin.configure({ webClientId: '698870086535-9u7om62751c3ivum8f2nboe1iophqdom.apps.googleusercontent.com' });
   }, []);
 
@@ -19,9 +26,10 @@ const GoogleSignIn = () => {
       setLoading(true);
       await GoogleSignin.hasPlayServices();
       const usrInfo = await GoogleSignin.signIn();
-      setUserInfo(usrInfo);
+      setUserInfo(usrInfo); // user data
       setLoading(false);
-
+      dispatch(setIsAppReady(true));
+      
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -31,42 +39,40 @@ const GoogleSignIn = () => {
     }
 
   };
-  const handleGoogleLogout = async () => {
-    try {
-      await GoogleSignin.signOut();
-      setUserInfo(null);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleGoogleLogout = async () => {
+  //   try {
+  //     await GoogleSignin.signOut();
+  //     setUserInfo(null);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
 
-      {userInfo != null && <Text style={{ color: 'black' }}>{userInfo.user.name}</Text>}
+      {/* {userInfo != null && <Text style={{ color: 'black' }}>{userInfo.user.name}</Text>}
       {userInfo && <Text style={{ color: 'black' }}> {userInfo.user.email}</Text>}
       {userInfo && <Image style={{ width: 100, height: 80 }} source={{ uri: userInfo.user.photo }} />}
+ */}
 
-
-
-      <TouchableOpacity style={styles.googleButton} onPress={handleGoogleSignIn}>
-        {loading ? <ActivityIndicator size="small" color="#ffff" /> : <Text style={styles.buttonText}>Login with Google</Text>}
+      <TouchableOpacity style={styles.loginButton} onPress={handleGoogleSignIn}>
+      {loading ? <ActivityIndicator size="small" color="#ffff" /> : <Text style={styles.loginButtonText}>Login with Google</Text>}
       </TouchableOpacity>
-      {userInfo &&
+
+      {/* {userInfo &&
         <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogout}>
           <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>
-      }
+      } */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'transparent',
+    width:'100%',
   },
   googleButton: {
     flexDirection: 'row',
@@ -84,6 +90,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+  },  
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  loginButton: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#007BFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginBottom: 20,
   },
   buttonText: {
     color: '#fff',
