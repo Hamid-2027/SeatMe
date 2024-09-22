@@ -7,17 +7,19 @@ import { selectCount } from '../core/redux/slices/counterSlice';
 import { increment, decrement } from '../core/redux/slices/counterSlice';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { setIsAppReady } from '../core/redux/slices/user-auth-slice';
+import { useNavigation } from '@react-navigation/native';
 
-type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
+// type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
 type Props = {
-  navigation: DetailsScreenNavigationProp;
+  // navigation: DetailsScreenNavigationProp;
 };
 
-const WelcomeScreen: React.FC<Props> = ({ navigation }) => {
+const WelcomeScreen: React.FC<Props> = () => {
 const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const navigation= useNavigation();
 
   const handleGoogleLogout = async () => {
     setLoading(true);
@@ -36,7 +38,8 @@ const count = useSelector(selectCount);
   return (
     <>
     <View style={styles.container}>
-      <Text style={{color:'black'}}>Details Screen</Text>
+      <Text style={{color:'black'}}>Welcome to SeatMe app...</Text>
+      <Button title="Create you post" onPress={() => navigation.navigate('Post')} />
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text style={{color : 'black'}}>Redux Example</Text>
       <Text style={{ color : 'black'}}>Count: {count}</Text>
@@ -45,7 +48,10 @@ const count = useSelector(selectCount);
     </View>
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
-    
+
+
+
+
     <TouchableOpacity style={styles.loginButton} onPress={handleGoogleLogout}>
       {loading ? <ActivityIndicator size="small" color="#ffff" /> : <Text style={styles.loginButtonText}>Login with Google</Text>}
       </TouchableOpacity>

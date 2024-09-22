@@ -7,6 +7,7 @@ import LoginScreen from './src/screens/login-screen';
 import WelcomeScreen from './src/screens/welcome-screen';
 import { configureGoogleSignIn } from './src/configureGoogleSignIn';
 import { useSelector } from 'react-redux';
+import PostScreen from './src/screens/post-screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,7 @@ const App = () => {
         <Stack.Screen name="welcome" component={WelcomeScreen} />
         )}
         <Stack.Screen name="Details" component={DetailsScreen} />
-
+        <Stack.Screen name="Post" component={PostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
