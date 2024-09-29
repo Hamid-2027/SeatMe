@@ -8,6 +8,8 @@ import { increment, decrement } from '../core/redux/slices/counterSlice';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { setIsAppReady } from '../core/redux/slices/user-auth-slice';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 // type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
@@ -22,6 +24,8 @@ const count = useSelector(selectCount);
   const navigation= useNavigation();
 
   const handleGoogleLogout = async () => {
+  const {t} = useTranslation();
+
     setLoading(true);
     try {
       await GoogleSignin.signOut();
@@ -38,7 +42,7 @@ const count = useSelector(selectCount);
   return (
     <>
     <View style={styles.container}>
-      <Text style={{color:'black'}}>Welcome to SeatMe app...</Text>
+      <Text style={{color:'black'}}> {t('welcome')} </Text>
       <Button title="Create you post" onPress={() => navigation.navigate('Post')} />
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text style={{color : 'black'}}>Redux Example</Text>

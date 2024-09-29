@@ -1,0 +1,23 @@
+{
+    "login": "لاگ ان کریں",
+    "signup": "رجسٹریشن کریں",
+    "username": "صارف نام",
+    "password": "پاس ورڈ",
+    "email": "ای میل",
+    "confirmPassword": "پاس ورڈ کی تصدیق کریں",
+    "welcome": "خوش آمدید",
+    "signInHeadline": "جاری رکھنے کے لیے سائن ان کریں",
+    "forgotPassword": "پاس ورڈ بھول گئے؟",
+    "emailRequired": "ای میل درج کرنا ضروری ہے",
+    "passwordRequired": "پاس ورڈ درج کرنا ضروری ہے",
+    "createNewUser": "نیا اکاؤنٹ بنائیں",
+    "createAccount": "اکاؤنٹ بنائیں",
+    "signupHeadline": "شروع کرنے کے لیے رجسٹریشن کریں",
+    "alreadyUser": "پہلے سے اکاؤنٹ موجود ہے",
+    "usernameRequired": "صارف نام درج کرنا ضروری ہے",
+    "confirmPasswordRequired": "پاس ورڈ کی تصدیق کرنا ضروری ہے",
+    "invalidEmail": "غلط ای میل ایڈریس",
+    "minPasswordLength": "پاس ورڈ کم از کم 6 حروف پر مشتمل ہونا چاہیے",
+    "passwordMustMatch": "پاس ورڈ کا ایک جیسا ہونا ضروری ہے",
+    "selectLanguage": "زبان کا انتخاب کریں"
+}
