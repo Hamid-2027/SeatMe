@@ -51,8 +51,8 @@ const SelectLangModal = ({visible, onClose, onSelect, selectedLang}) => {
                 <Image
                   source={
                     selectedIndex == index
-                      ? require('../images/radio.png')
-                      : require('../images/radio-button.png')
+                      ? require('../../Assets/images/radio.png')
+                      : require('../../Assets/images/radio-button.png')
                   }
                   style={styles.icon}
                 />
