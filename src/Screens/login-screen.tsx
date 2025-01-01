@@ -80,7 +80,9 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         onChangeText={(text) => setPassword(text)}
       />
 
-      <TouchableOpacity style={styles.loginButton} onPress={()=>{}}>
+      <TouchableOpacity style={styles.loginButton} onPress={()=>{
+        navigation.navigate("welcome")
+      }}>
         <Text style={styles.loginButtonText}>{t('login')}</Text>
       </TouchableOpacity>
       <View style={{width:'100%'}}>
