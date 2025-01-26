@@ -3,12 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import DetailsScreen from './src/screens/details-screen';
-import LoginScreen from './src/screens/login-screen';
+import LoginScreen from './src/screens/auth-screens/login-screen';
 import WelcomeScreen from './src/screens/welcome-screen';
-import { configureGoogleSignIn } from './src/configureGoogleSignIn';
 import { useSelector } from 'react-redux';
 import PostScreen from './src/screens/post-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SliderScreen from './src/screens/slider-screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +42,7 @@ const App = () => {
     const checkLoginStatus = async () => {
       const loginStatus = await AsyncStorage.getItem("isUserLogin");
       console.log("loginStatusKK",loginStatus);
-      setIsUserLogin(JSON.parse(loginStatus));
+      if(loginStatus==='true') {setIsUserLogin(true);}
     };
 
     checkLoginStatus();
@@ -58,6 +58,7 @@ const App = () => {
         <Stack.Screen name="welcome" component={WelcomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Post" component={PostScreen} />
+        <Stack.Screen name="SliderScreen" component={SliderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,6 +8,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAppReady } from './core/redux/slices/user-auth-slice';
+import { Colors } from './Colors';
 
 const GoogleSignIn = () => {
   const [loading, setLoading] = useState(false);
@@ -19,17 +20,21 @@ const GoogleSignIn = () => {
   useEffect(() => {
     console.log("isAppReady",userInfo)
     GoogleSignin.configure({ webClientId: '698870086535-9u7om62751c3ivum8f2nboe1iophqdom.apps.googleusercontent.com' });
+    
   }, []);
 
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true);
       await GoogleSignin.hasPlayServices();
+      console.log('before token')
       const usrInfo = await GoogleSignin.signIn();
       setUserInfo(usrInfo); // user data
+      console.log('after token')
+
       setLoading(false);
       dispatch(setIsAppReady(true));
-      
+      await AsyncStorage.setItem("isUserLogin", ); // for persist login data
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -50,11 +55,6 @@ const GoogleSignIn = () => {
 
   return (
     <View style={styles.container}>
-
-      {/* {userInfo != null && <Text style={{ color: 'black' }}>{userInfo.user.name}</Text>}
-      {userInfo && <Text style={{ color: 'black' }}> {userInfo.user.email}</Text>}
-      {userInfo && <Image style={{ width: 100, height: 80 }} source={{ uri: userInfo.user.photo }} />}
- */}
 
       <TouchableOpacity style={styles.loginButton} onPress={handleGoogleSignIn}>
       {loading ? <ActivityIndicator size="small" color="#ffff" /> : <Text style={styles.loginButtonText}>Login with Google</Text>}
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#007BFF',
     justifyContent: 'center',
+    backgroundColor: Colors.primary.deepBlue,
     alignItems: 'center',
     borderRadius: 10,
     marginBottom: 20,

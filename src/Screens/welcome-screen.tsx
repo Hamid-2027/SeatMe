@@ -10,6 +10,8 @@ import { setIsAppReady } from '../core/redux/slices/user-auth-slice';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import SliderComponent from '../components/slider-component';
 
 // type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
@@ -42,8 +44,14 @@ const count = useSelector(selectCount);
   return (
     <>
     <View style={styles.container}>
+        
+      <View style={{ height:353, marginVertical:32}}>
+      <SliderComponent/>
+      </View>
       <Text style={{color:'black'}}> {t('welcome')} </Text>
       <Button title="Create you post" onPress={() => navigation.navigate('Post')} />
+      <Button title="Create slider" onPress={() => navigation.navigate('SliderScreen')} />
+
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text style={{color : 'black'}}>Redux Example</Text>
       <Text style={{ color : 'black'}}>Count: {count}</Text>

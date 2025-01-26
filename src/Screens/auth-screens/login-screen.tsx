@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from './types';
-import GoogleSignIn from '../google-sign-in-screen';
+import GoogleSignIn from '../../google-sign-in-screen';
 import LinearGradient from 'react-native-linear-gradient';
-import i18n from '../../i18n';
-import SelectLangModal from '../core/components/SelectLangModal';
+import i18n from '../../../i18n';
+import SelectLangModal from '../../core/core-components/SelectLangModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
+import { Colors } from '../../Colors';
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-};
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+const LoginScreen = ({ navigation }:any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectLanguage, setSelectLanguage] = useState('English');
@@ -39,23 +34,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    // <View style={styles.container}>
-    //   <Text>Home Screen</Text>
-    //   <Button
-    //     title="Go to Details"
-    //     onPress={() => navigation.navigate('welcome')}
-    //   />
-    //     <GoogleSignIn />
-    // </View>
-      <LinearGradient
-      colors={['#e0f7fa', '#ffffff']}
-      start={{ x: 0, y: 0 }} 
-      end={{ x: .8, y: 0 }} 
-      style={styles.gradientColorStyle}
-    >
+    <View style={styles.gradientColorStyle}>
+
     <View style={styles.container}>
 
-      <Text style={styles.title}>Welcome <Text style={{color:'blue'}}>SeatMe</Text></Text>
+      <Text style={styles.title}>Welcome To <Text style={{color:Colors.primary.deepBlue}}>SeatMe</Text></Text>
       <TouchableOpacity
         style={styles.langView}
         onPress={() => {
@@ -66,14 +49,14 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       </TouchableOpacity>
       <TextInput
         placeholder="Email"
-        placeholderTextColor={'black'}
+        placeholderTextColor={Colors.secondary.coolGray}
         style={styles.input}
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         placeholder="Password"
-        placeholderTextColor={'black'}
+        placeholderTextColor={Colors.secondary.coolGray}
         style={styles.input}
         value={password}
         secureTextEntry
@@ -100,7 +83,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       /> */}
 
       <TouchableOpacity>
-        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+        <Text style={styles.signupText}>Don't have an account? <Text style={{color: Colors.primary.deepBlue}}>Sign Up</Text></Text>
       </TouchableOpacity> 
      <SelectLangModal
             visible={showModal}
@@ -120,7 +103,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             }}
           />        
       </View>
-      </LinearGradient>
+      </View>
 
   );
 };
@@ -131,6 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex:-12,
+    backgroundColor:Colors.primary.black
   },
   container: {
     paddingHorizontal: 20,
@@ -141,7 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#333',
+    color:Colors.primary.white
   },
   input: {
     width: '100%',
@@ -149,12 +133,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 15,
+    color:Colors.primary.white,
     borderColor: '#ddd',
     borderWidth: 1,
     fontSize: 16,
   },
   langView: {
-
+    backgroundColor:Colors.primary.white,
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
@@ -166,14 +151,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   lang: {
-    color: 'black',
+    color:Colors.primary.black,
     fontSize: 16,
     fontWeight: '600',
   },
   loginButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#007BFF',
+    backgroundColor: Colors.primary.deepBlue,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -189,15 +174,8 @@ const styles = StyleSheet.create({
     color: '#666',
     marginVertical: 10,
   },
-  googleButton: {
-    width: '100%',
-    height: 50,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   signupText: {
-    color: '#007BFF',
+    color: Colors.primary.white,
     fontSize: 16,
     marginTop: 20,
   },
