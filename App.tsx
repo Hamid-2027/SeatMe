@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
-import DetailsScreen from './src/screens/details-screen';
+import DetailsScreen from './src/screens/intro-onboarding-screens';
 import LoginScreen from './src/screens/auth-screens/login-screen';
 import WelcomeScreen from './src/screens/welcome-screen';
 import { useSelector } from 'react-redux';
 import PostScreen from './src/screens/post-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SliderScreen from './src/screens/slider-screen';
+import IntroOnboardingScreens from './src/screens/intro-onboarding-screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,12 +52,12 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}
-      initialRouteName=  {!isUserLogin ?'Auth':'welcome' }>
-
+      initialRouteName=  {'IntroScreens' }>
 
         <Stack.Screen name="Auth" component={LoginScreen} />
+
+        <Stack.Screen name="IntroScreens" component={IntroOnboardingScreens} />
         <Stack.Screen name="welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Post" component={PostScreen} />
         <Stack.Screen name="SliderScreen" component={SliderScreen} />
       </Stack.Navigator>
