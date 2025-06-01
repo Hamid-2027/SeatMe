@@ -1,7 +1,6 @@
 
   // =============================================
   // BUS COMPANY PROFILES
-  // =============================================
   export interface BusCompany {
     id: string;
     name: string;
@@ -200,59 +199,6 @@
         'Snack Service'
       ],
       fleetSize: 60,
-      routesCovered: ['Islamabad-Lahore', 'Islamabad-Peshawar', 'Lahore-Faisalabad'],
-      ratings: {
-        overall: 4.1,
-        comfort: 4.0,
-        punctuality: 4.3,
-        cleanliness: 4.1,
-        staffBehavior: 4.0,
-        reviewCount: 4500
-      },
-      certifications: [],
-      busTypes: ['Business', 'Standard']
-    }
-  ];
-
-  // =============================================
-  // BUS ROUTES
-  // =============================================
-  export interface BusRoute {
-    id: string;
-    from: string;
-    to: string;
-    distance: string;
-    estimatedDuration: string;
-    availableBusTypes: string[];
-    isPopular: boolean;
-    companyIds: string[];
-  }
-  
-  export const busRoutes: BusRoute[] = [
-    {
-      id: 'route1',
-      from: 'Lahore',
-      to: 'Islamabad',
-      distance: '375 km',
-      estimatedDuration: '4h 30m',
-      availableBusTypes: ['Standard', 'Business', 'Premium'],
-      isPopular: true,
-      companyIds: ['company1', 'company2', 'company5']
-    },
-    {
-      id: 'route2',
-      from: 'Lahore',
-      to: 'Karachi',
-      distance: '1,210 km',
-      estimatedDuration: '15h 20m',
-      availableBusTypes: ['Business', 'Premium'],
-      isPopular: true,
-      companyIds: ['company1', 'company4']
-    },
-    {
-      id: 'route3',
-      from: 'Islamabad',
-      to: 'Peshawar',
       distance: '190 km',
       estimatedDuration: '2h 30m',
       availableBusTypes: ['Standard', 'Business'],
@@ -281,9 +227,8 @@
     }
   ];
   
-  // =============================================
   // BUS SCHEDULES (STEP 1 & 2: ROUTE & DATE/TIME SELECTION)
-  // =============================================
+
   export interface BusSchedule {
     id: string;
     routeId: string;
@@ -551,1010 +496,296 @@
     }
   ];
   
-  // =============================================
-  // BUS DETAILS AND SEAT CONFIGURATION (STEP 3: SEAT SELECTION)
-  // =============================================
-  export interface Bus {
-    id: string;
-    name: string;
-    busType: string;
-    registrationNumber: string;
-    operator: string;
-    companyId: string;
-    amenities: string[];
-    seatConfiguration: SeatConfiguration;
-  }
-  
-  export interface SeatConfiguration {
-    rows: number;
-    columns: number;
-    layout: string[][]; // 'seat', 'aisle', 'empty', 'driver', etc.
-    seats: Seat[];
-  }
-  
-  export interface Seat {
-    id: string;
-    seatNumber: string;
-    row: number;
-    column: number;
-    type: string; // 'standard', 'business', 'premium'
-    price: number;
-    currency: string;
-    isAvailable: boolean;
-    isHandicapped: boolean;
-    isReserved: boolean;
-    genderPreference?: 'male' | 'female' | 'any'; // Seat preference for gender
-    occupiedBy?: 'male' | 'female' | null; // Gender of the person who booked the seat
-  }
-  
-  export const buses: Bus[] = [
-    {
-      id: 'bus1',
-      name: 'Daewoo Express',
-      busType: 'Premium',
-      registrationNumber: 'LEW-5432',
-      operator: 'Daewoo Pakistan',
-      companyId: 'company1',
-      amenities: ['WiFi', 'USB Charging', 'Air Conditioning', 'Refreshments', 'Reclining Seats', 'Entertainment System', 'Blankets'],
-      seatConfiguration: {
-        rows: 9,
-        columns: 4,
-        layout: [
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat']
-        ],
-        seats: [
-          {
-            id: 'seat1',
-            seatNumber: '1A',
-            row: 0,
-            column: 0,
-            type: 'premium',
-            price: 2500,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false,
-            genderPreference: 'any'
-          },
-          {
-            id: 'seat2',
-            seatNumber: '1B',
-            row: 0,
-            column: 1,
-            type: 'premium',
-            price: 2500,
-            currency: 'PKR',
-            isAvailable: false,
-            isHandicapped: false,
-            isReserved: true,
-            genderPreference: 'male',
-            occupiedBy: 'male'
-          },
-          {
-            id: 'seat3',
-            seatNumber: '1D',
-            row: 0,
-            column: 3,
-            type: 'premium',
-            price: 2500,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false,
-            genderPreference: 'female'
-          },
-          {
-            id: 'seat4',
-            seatNumber: '1E',
-            row: 0,
-            column: 4,
-            type: 'premium',
-            price: 2500,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false,
-            genderPreference: 'any'
-          }
-          // Additional seats would be defined here
-        ]
-      }
-    },
-    {
-      id: 'bus2',
-      name: 'Faisal Movers',
-      busType: 'Business',
-      registrationNumber: 'LZC-7890',
-      operator: 'Faisal Movers Pakistan',
-      amenities: ['WiFi', 'USB Charging', 'Air Conditioning', 'Snacks', 'Adjustable Seats', 'Reading Lights'],
-      seatConfiguration: {
-        rows: 10,
-        columns: 4,
-        layout: [
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat']
-        ],
-        seats: [
-          {
-            id: 'seat1-bus2',
-            seatNumber: '1A',
-            row: 0,
-            column: 0,
-            type: 'business',
-            price: 1800,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat2-bus2',
-            seatNumber: '1B',
-            row: 0,
-            column: 1,
-            type: 'business',
-            price: 1800,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat3-bus2',
-            seatNumber: '1D',
-            row: 0,
-            column: 3,
-            type: 'business',
-            price: 1800,
-            currency: 'PKR',
-            isAvailable: false,
-            isHandicapped: true,
-            isReserved: false
-          },
-          {
-            id: 'seat4-bus2',
-            seatNumber: '1E',
-            row: 0,
-            column: 4,
-            type: 'business',
-            price: 1800,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          }
-          // Additional seats would be defined here
-        ]
-      }
-    },
-    {
-      id: 'bus3',
-      name: 'Skyways',
-      busType: 'Standard',
-      registrationNumber: 'RWP-1234',
-      operator: 'Skyways Pakistan',
-      amenities: ['Air Conditioning', 'Basic Refreshments', 'Comfortable Seating'],
-      seatConfiguration: {
-        rows: 12,
-        columns: 4,
-        layout: [
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat']
-        ],
-        seats: [
-          {
-            id: 'seat1-bus3',
-            seatNumber: '1A',
-            row: 0,
-            column: 0,
-            type: 'standard',
-            price: 1200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat2-bus3',
-            seatNumber: '1B',
-            row: 0,
-            column: 1,
-            type: 'standard',
-            price: 1200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat3-bus3',
-            seatNumber: '1D',
-            row: 0,
-            column: 3,
-            type: 'standard',
-            price: 1200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat4-bus3',
-            seatNumber: '1E',
-            row: 0,
-            column: 4,
-            type: 'standard',
-            price: 1200,
-            currency: 'PKR',
-            isAvailable: false,
-            isHandicapped: false,
-            isReserved: true
-          }
-          // Additional seats would be defined here
-        ]
-      }
-    },
-    {
-      id: 'bus4',
-      name: 'Bilal Travels',
-      busType: 'Premium',
-      registrationNumber: 'KHI-9876',
-      operator: 'Bilal Travels Pakistan',
-      amenities: ['WiFi', 'USB Charging', 'Air Conditioning', 'Premium Refreshments', 'Fully Reclining Seats', 'Personal Entertainment', 'Blankets & Pillows', 'Onboard Attendant'],
-      seatConfiguration: {
-        rows: 8,
-        columns: 3,
-        layout: [
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'aisle', 'seat', 'seat']
-        ],
-        seats: [
-          {
-            id: 'seat1-bus4',
-            seatNumber: '1A',
-            row: 0,
-            column: 0,
-            type: 'premium',
-            price: 5500,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat2-bus4',
-            seatNumber: '1C',
-            row: 0,
-            column: 2,
-            type: 'premium',
-            price: 5500,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat3-bus4',
-            seatNumber: '1D',
-            row: 0,
-            column: 3,
-            type: 'premium',
-            price: 5500,
-            currency: 'PKR',
-            isAvailable: false,
-            isHandicapped: false,
-            isReserved: true
-          }
-          // Additional seats would be defined here
-        ]
-      }
-    },
-    {
-      id: 'bus5',
-      name: 'Kohistan Express',
-      busType: 'Business',
-      registrationNumber: 'ISB-5678',
-      operator: 'Kohistan Express Pakistan',
-      amenities: ['WiFi', 'USB Charging', 'Air Conditioning', 'Snack Service', 'Semi-Reclining Seats', 'Onboard Entertainment'],
-      seatConfiguration: {
-        rows: 10,
-        columns: 4,
-        layout: [
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat'],
-          ['seat', 'seat', 'aisle', 'seat', 'seat']
-        ],
-        seats: [
-          {
-            id: 'seat1-bus5',
-            seatNumber: '1A',
-            row: 0,
-            column: 0,
-            type: 'business',
-            price: 4200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat2-bus5',
-            seatNumber: '1B',
-            row: 0,
-            column: 1,
-            type: 'business',
-            price: 4200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: false,
-            isReserved: false
-          },
-          {
-            id: 'seat3-bus5',
-            seatNumber: '1D',
-            row: 0,
-            column: 3,
-            type: 'business',
-            price: 4200,
-            currency: 'PKR',
-            isAvailable: true,
-            isHandicapped: true,
-            isReserved: false
-          },
-          {
-            id: 'seat4-bus5',
-            seatNumber: '1E',
-            row: 0,
-            column: 4,
-            type: 'business',
-            price: 4200,
-            currency: 'PKR',
-            isAvailable: false,
-            isHandicapped: false,
-            isReserved: true
-          }
-          // Additional seats would be defined here
-        ]
-      }
-    }
-  ];
-  
-  // =============================================
-  // PASSENGER DETAILS (STEP 4: ADD PASSENGER DETAILS)
-  // =============================================
-  export enum DocumentType {
-    CNIC = 'CNIC/Form B',
-    PASSPORT = 'Passport'
-  }
+// BUS DETAILS AND SEAT CONFIGURATION (STEP 3: SEAT SELECTION)
+export interface Bus {
+  id: string;
+  name: string;
+  busType: string;
+  registrationNumber: string;
+  operator: string;
+  companyId: string;
+  amenities: string[];
+  seatLayout: SeatLayoutTemplate;
+}
 
-  export enum Gender {
-    MALE = 'Male',
-    FEMALE = 'Female',
-    // OTHER = 'Other',
-    // PREFER_NOT_TO_SAY = 'Prefer not to say'
-  }
-  
-  export interface PassengerDetail {
-    id: string;
-    name: string;
-    gender: Gender;
-    age?: number;
-    documentType: DocumentType;
-    documentNumber: string;
-    phoneNumber: string;
-    email?: string;
-    address?: string;
-    city?: string;
-    country?: string;
-    emergencyContact?: {
-      name: string;
-      relationship: string;
-      phoneNumber: string;
-    };
-    specialRequirements?: string;
-    saveForFuture?: boolean;
-  }
-  
-  export interface PassengerDetailsSubmission {
-    bookingId: string;
-    passengers: PassengerDetail[];
-    bookedBy: {
-      userId: string;
-      name: string;
-      gender: Gender;
-      phoneNumber: string;
-      email: string;
-      relationship: string; // 'self', 'family', 'friend', 'colleague', 'other'
-    };
-  }
-  
-  export const samplePassengerDetails: PassengerDetailsSubmission = {
-    bookingId: 'booking123',
-    passengers: [
-      {
-        id: 'passenger1',
-        name: 'Muhammad Ali',
-        gender: Gender.MALE,
-        age: 32,
-        documentType: DocumentType.CNIC,
-        documentNumber: '35202-1234567-8',
-        phoneNumber: '+923001234567',
-        email: 'muhammadali@example.com',
-        address: '123 Main Street, Gulberg',
-        city: 'Lahore',
-        country: 'Pakistan',
-        emergencyContact: {
-          name: 'Aisha Ali',
-          relationship: 'Spouse',
-          phoneNumber: '+923001234568'
-        },
-        saveForFuture: true
-      },
-      {
-        id: 'passenger2',
-        name: 'Fatima Khan',
-        gender: Gender.FEMALE,
-        age: 28,
-        documentType: DocumentType.CNIC,
-        documentNumber: '35202-7654321-0',
-        phoneNumber: '+923009876543',
-        email: 'fatima@example.com',
-        city: 'Lahore',
-        country: 'Pakistan',
-        saveForFuture: true
-      }
+export interface SeatLayoutTemplate {
+  layoutId: string;
+  name: string;
+  rows: number;
+  columns: number;
+  layout: string[][];
+  seats: Seat[];
+}
+
+export interface Seat {
+  id: string;
+  seatNumber: string;
+  row: number;
+  column: number;
+  type: 'window' | 'aisle' | 'middle';
+  price: number;
+  currency: string;
+  isHandicapped: boolean;
+  status: SeatStatus;
+}
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER'
+}
+
+export enum DocumentType {
+  CNIC = 'CNIC',
+  PASSPORT = 'PASSPORT',
+  DRIVING_LICENSE = 'DRIVING_LICENSE'
+}
+
+export enum BookingStatus {
+  CONFIRMED = 'CONFIRMED',
+  PENDING = 'PENDING',
+  CANCELLED = 'CANCELLED',
+  COMPLETED = 'COMPLETED'
+}
+
+export enum SeatStatus {
+  AVAILABLE = 'AVAILABLE',
+  BOOKED = 'BOOKED',
+  RESERVED = 'RESERVED',
+  BLOCKED = 'BLOCKED'
+}
+
+export interface PassengerDetail {
+  id: string;
+  name: string;
+  gender: Gender;
+  seatNumber: string;
+  bookedById: string; // ID of the user who booked this seat
+}
+
+export enum PaymentStatus {
+  PAID = 'PAID',
+  PENDING = 'PENDING',
+  FAILED = 'FAILED',
+  REFUNDED = 'REFUNDED'
+}
+
+export interface PaymentMethod {
+  id: string;
+  type: 'credit_card' | 'debit_card' | 'easypaisa' | 'jazzcash' | 'bank_transfer';
+  name: string;
+  icon: any; // Image source
+  isPopular: boolean;
+  processingFee?: number;
+  processingTime?: string;
+}
+
+export const seatLayouts: SeatLayoutTemplate[] = [
+  {
+    layoutId: 'layout_2x2_business',
+    name: '2x2 Business Class',
+    rows: 10,
+    columns: 4,
+    layout: [
+      ['1A', '1B', '', '1C'],
+      ['2A', '2B', '', '2C'],
+      ['3A', '3B', '', '3C'],
+      ['4A', '4B', '', '4C'],
+      ['5A', '5B', '', '5C'],
+      ['6A', '6B', '', '6C'],
+      ['7A', '7B', '', '7C'],
+      ['8A', '8B', '', '8C'],
+      ['9A', '9B', '', '9C'],
+      ['10A', '10B', '', '10C']
     ],
-    bookedBy: {
-      userId: 'user456',
-      name: 'Muhammad Ali',
-      gender: Gender.MALE,
-      phoneNumber: '+923001234567',
-      email: 'muhammadali@example.com',
-      relationship: 'self'
-    }
-  };
-  
-  // =============================================
-  // BOOKING
-  // =============================================
-  export enum BookingStatus {
-    PENDING = 'pending',
-    CONFIRMED = 'confirmed',
-    CANCELLED = 'cancelled',
-    COMPLETED = 'completed'
-  }
-  
-  export enum PaymentStatus {
-    PENDING = 'pending',
-    PROCESSING = 'processing',
-    PAID = 'paid',
-    FAILED = 'failed',
-    REFUNDED = 'refunded',
-    PARTIALLY_REFUNDED = 'partially_refunded'
-  }
-
-  export interface Booking {
-    id: string;
-    userId: string;
-    scheduleId: string;
-    busId: string;
-    routeId: string;
-    companyId: string;
-    selectedSeats: string[]; // Array of seat IDs
-    passengerIds: string[]; // Array of passenger IDs
-    totalFare: number;
-    currency: string;
-    bookingDate: string;
-    travelDate: string;
-    status: BookingStatus;
-    paymentId?: string;
-    promoCodeApplied?: boolean;
-    promoCode?: string;
-    promoDiscount?: number;
-    bookmeBalanceUsed?: number;
-    boardingPointId: string;
-    droppingPointId: string;
-  }
-  
-  export interface BookingDetails {
-    booking: Booking;
-    company: {
-      id: string;
-      name: string;
-      logo: string;
-      contactInfo: {
-        email: string;
-        phone: string;
-        website: string;
-      };
-    };
-    route: {
-      from: string;
-      to: string;
-      distance: string;
-      estimatedDuration: string;
-    };
-    schedule: {
-      departureTime: string;
-      arrivalTime: string;
-      date: string;
-      busType: string;
-    };
-    boardingPoint: {
-      name: string;
-      address: string;
-      time: string;
-      landmark?: string;
-    };
-    droppingPoint: {
-      name: string;
-      address: string;
-      time: string;
-      landmark?: string;
-    };
-    bus: {
-      name: string;
-      registrationNumber: string;
-      operator: string;
-      amenities: string[];
-    };
-    seats: {
-      id: string;
-      seatNumber: string;
-      type: string;
-      price: number;
-      currency: string;
-      genderPreference: string;
-      occupiedBy: string;
-    }[];
-    passengers: {
-      id: string;
-      name: string;
-      gender: string;
-      age?: number;
-      documentType: string;
-      documentNumber: string;
-      phoneNumber: string;
-      email?: string;
-      seatNumber: string;
-    }[];
-    payment: {
-      totalAmount: number;
-      discount: number;
-      bookmeBalanceUsed: number;
-      finalAmount: number;
-      currency: string;
-      paymentMethod?: string;
-      paymentStatus: PaymentStatus;
-      transactionId?: string;
-      paymentDate?: string;
-      receiptUrl?: string;
-    };
-    cancellationPolicy: string;
-  }
-  
-  export const sampleBookingDetails: BookingDetails = {
-    booking: {
-      id: 'booking123',
-      userId: 'user456',
-      scheduleId: 'schedule1',
-      busId: 'bus1',
-      routeId: 'route1',
-      companyId: 'company1',
-      selectedSeats: ['seat1', 'seat3'],
-      passengerIds: ['passenger1', 'passenger2'],
-      totalFare: 5000,
-      currency: 'PKR',
-      bookingDate: '2025-05-26',
-      travelDate: '2025-05-27',
-      status: BookingStatus.CONFIRMED,
-      paymentId: 'payment789',
-      promoCodeApplied: true,
-      promoCode: 'SUMMER25',
-      promoDiscount: 500,
-      bookmeBalanceUsed: 1000,
-      boardingPointId: 'bp1',
-      droppingPointId: 'dp1'
-    },
-    company: {
-      id: 'company1',
-      name: 'Daewoo Pakistan',
-      logo: 'assets/images/companies/daewoo.png',
-      contactInfo: {
-        email: 'info@daewoo.com.pk',
-        phone: '+92-42-111-007-008',
-        website: 'www.daewoo.com.pk'
-      }
-    },
-    route: {
-      from: 'Lahore',
-      to: 'Islamabad',
-      distance: '375 km',
-      estimatedDuration: '4h 30m'
-    },
-    schedule: {
-      departureTime: '08:00 AM',
-      arrivalTime: '12:30 PM',
-      date: '2025-05-27',
-      busType: 'Premium'
-    },
-    boardingPoint: {
-      name: 'Daewoo Terminal Lahore',
-      address: 'Thokar Niaz Baig, Lahore',
-      time: '07:30 AM',
-      landmark: 'Near Thokar Niaz Baig Flyover'
-    },
-    droppingPoint: {
-      name: 'Daewoo Terminal Islamabad',
-      address: 'I-8 Markaz, Islamabad',
-      time: '12:30 PM',
-      landmark: 'Near Centaurus Mall'
-    },
-    bus: {
-      name: 'Daewoo Express',
-      registrationNumber: 'LEW-5432',
-      operator: 'Daewoo Pakistan',
-      amenities: ['WiFi', 'USB Charging', 'Air Conditioning', 'Refreshments', 'Reclining Seats', 'Entertainment System', 'Blankets']
-    },
     seats: [
       {
-        id: 'seat1',
+        id: 'seat1-layout_2x2_business',
         seatNumber: '1A',
-        type: 'premium',
-        price: 2500,
+        row: 0,
+        column: 0,
+        type: 'window',
+        price: 1800,
         currency: 'PKR',
-        genderPreference: 'male',
-        occupiedBy: 'male'
+        isHandicapped: false,
+        status: SeatStatus.AVAILABLE
       },
       {
-        id: 'seat3',
-        seatNumber: '1D',
-        type: 'premium',
-        price: 2500,
+        id: 'seat2-layout_2x2_business',
+        seatNumber: '1B',
+        row: 0,
+        column: 1,
+        type: 'aisle',
+        price: 1800,
         currency: 'PKR',
-        genderPreference: 'female',
-        occupiedBy: 'female'
-      }
-    ],
-    passengers: [
-      {
-        id: 'passenger1',
-        name: 'Muhammad Ali',
-        gender: 'Male',
-        age: 32,
-        documentType: 'CNIC/Form B',
-        documentNumber: '35202-1234567-8',
-        phoneNumber: '+923001234567',
-        email: 'muhammadali@example.com',
-        seatNumber: '1A'
+        isHandicapped: false,
+        status: SeatStatus.AVAILABLE
       },
       {
-        id: 'passenger2',
-        name: 'Fatima Khan',
-        gender: 'Female',
-        age: 28,
-        documentType: 'CNIC/Form B',
-        documentNumber: '35202-7654321-0',
-        phoneNumber: '+923009876543',
-        email: 'fatima@example.com',
-        seatNumber: '1D'
-      }
-    ],
-    payment: {
-      totalAmount: 5000,
-      discount: 500,
-      bookmeBalanceUsed: 1000,
-      finalAmount: 3500,
-      currency: 'PKR',
-      paymentMethod: 'Credit Card',
-      paymentStatus: PaymentStatus.PAID,
-      transactionId: 'txn_123456789',
-      paymentDate: '2025-05-26T14:30:00Z',
-      receiptUrl: 'https://bookme.pk/receipts/booking123.pdf'
-    },
-    cancellationPolicy: '100% refund if cancelled 24 hours before departure, 50% refund if cancelled 12 hours before departure, no refund otherwise.'
-  };
-  
-  // =============================================
-  // PAYMENT METHODS
-  // =============================================
-  export interface PaymentMethod {
-    id: string;
-    type: 'credit_card' | 'debit_card' | 'easypaisa' | 'jazzcash' | 'bank_transfer';
-    name: string;
-    icon: any; // Image source
-    isPopular: boolean;
-    processingFee?: number;
-    processingTime?: string;
-  }
-  
-  export interface BookmeBalance {
-    userId: string;
-    balance: number;
-    currency: string;
-    lastUpdated: string;
-    transactions?: {
-      id: string;
-      type: 'credit' | 'debit';
-      amount: number;
-      date: string;
-      description: string;
-      relatedBookingId?: string;
-    }[];
-  }
-  
-  export const paymentMethods: PaymentMethod[] = [
-    {
-      id: 'pm1',
-      type: 'credit_card',
-      name: 'Credit/Debit Card',
-      icon: require('../../assets/card-icon.png'),
-      isPopular: true,
-      processingFee: 2.5,
-      processingTime: 'Instant'
-    },
-    {
-      id: 'pm2',
-      type: 'easypaisa',
-      name: 'Easypaisa',
-      icon: require('../../assets/easypaisa-icon.png'),
-      isPopular: true,
-      processingFee: 0,
-      processingTime: 'Instant'
-    },
-    {
-      id: 'pm3',
-      type: 'jazzcash',
-      name: 'JazzCash',
-      icon: require('../../assets/jazzcash-icon.png'),
-      isPopular: false,
-      processingFee: 0,
-      processingTime: 'Instant'
-    },
-    {
-      id: 'pm4',
-      type: 'bank_transfer',
-      name: 'Bank Transfer',
-      icon: require('../../assets/bank-icon.png'),
-      isPopular: false,
-      processingFee: 0,
-      processingTime: '1-2 business days'
-    }
-  ];
-  
-  export const sampleBookmeBalance: BookmeBalance = {
-    userId: 'user456',
-    balance: 2500,
-    currency: 'PKR',
-    lastUpdated: '2025-05-26',
-    transactions: [
-      {
-        id: 'txn1',
-        type: 'credit',
-        amount: 3000,
-        date: '2025-05-20T10:30:00Z',
-        description: 'Added via credit card'
-      },
-      {
-        id: 'txn2',
-        type: 'debit',
-        amount: 500,
-        date: '2025-05-26T14:30:00Z',
-        description: 'Used for booking',
-        relatedBookingId: 'booking123'
+        id: 'seat3-layout_2x2_business',
+        seatNumber: '1C',
+        row: 0,
+        column: 3,
+        type: 'window',
+        price: 1800,
+        currency: 'PKR',
+        isHandicapped: false,
+        status: SeatStatus.AVAILABLE
       }
     ]
-  };
-  
-  // =============================================
-  // USER PROFILES
-  // =============================================
-  export interface UserProfile {
-    id: string;
-    name: string;
-    email: string;
-    phoneNumber: string;
-    gender: Gender;
-    dateOfBirth?: string;
-    address?: string;
-    city?: string;
-    country?: string;
-    profilePicture?: string;
-    savedPassengers: PassengerDetail[];
-    savedPaymentMethods: {
-      id: string;
-      type: string;
-      lastFourDigits?: string;
-      expiryDate?: string;
-      cardHolderName?: string;
-      isDefault: boolean;
-    }[];
-    bookmeBalance: BookmeBalance;
-    bookingHistory: {
-      id: string;
-      from: string;
-      to: string;
-      date: string;
-      status: BookingStatus;
-      amount: number;
-    }[];
-    preferences: {
-      seatPreference?: 'window' | 'aisle' | 'any';
-      notificationPreferences: {
-        email: boolean;
-        sms: boolean;
-        pushNotifications: boolean;
-      };
-      currency: string;
-      language: string;
-    };
-    membershipStatus: 'regular' | 'silver' | 'gold' | 'platinum';
-    membershipPoints: number;
-    registrationDate: string;
-    lastLoginDate: string;
   }
-  
-  export const sampleUserProfile: UserProfile = {
-    id: 'user456',
-    name: 'Muhammad Ali',
-    email: 'muhammadali@example.com',
-    phoneNumber: '+923001234567',
-    gender: Gender.MALE,
-    dateOfBirth: '1993-05-15',
-    address: '123 Main Street, Gulberg',
-    city: 'Lahore',
-    country: 'Pakistan',
-    profilePicture: 'assets/images/profiles/user456.jpg',
-    savedPassengers: [
-      {
-        id: 'passenger1',
-        name: 'Muhammad Ali',
-        gender: Gender.MALE,
-        age: 32,
-        documentType: DocumentType.CNIC,
-        documentNumber: '35202-1234567-8',
-        phoneNumber: '+923001234567',
-        email: 'muhammadali@example.com',
-        address: '123 Main Street, Gulberg',
-        city: 'Lahore',
-        country: 'Pakistan',
-        saveForFuture: true
-      },
-      {
-        id: 'passenger2',
-        name: 'Fatima Khan',
-        gender: Gender.FEMALE,
-        age: 28,
-        documentType: DocumentType.CNIC,
-        documentNumber: '35202-7654321-0',
-        phoneNumber: '+923009876543',
-        email: 'fatima@example.com',
-        city: 'Lahore',
-        country: 'Pakistan',
-        saveForFuture: true
-      }
-    ],
-    savedPaymentMethods: [
-      {
-        id: 'pm_user1',
-        type: 'credit_card',
-        lastFourDigits: '4242',
-        expiryDate: '05/28',
-        cardHolderName: 'Muhammad Ali',
-        isDefault: true
-      },
-      {
-        id: 'pm_user2',
-        type: 'easypaisa',
-        isDefault: false
-      }
-    ],
-    bookmeBalance: {
-      userId: 'user456',
-      balance: 2500,
-      currency: 'PKR',
-      lastUpdated: '2025-05-26'
+]
+
+// USER PROFILES
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  gender: Gender;
+  dateOfBirth?: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  profilePicture?: string;
+  savedPassengers: PassengerDetail[];
+  savedPaymentMethods: {
+    id: string;
+    type: string;
+    lastFourDigits?: string;
+    expiryDate?: string;
+    cardHolderName?: string;
+    isDefault: boolean;
+  }[];
+  bookingHistory: {
+    id: string;
+    from: string;
+    to: string;
+    date: string;
+    status: BookingStatus;
+    amount: number;
+  }[];
+}
+
+export const sampleUserProfile: UserProfile = {
+  id: 'user456',
+  name: 'Muhammad Ali',
+  email: 'muhammadali@example.com',
+  phoneNumber: '+923001234567',
+  gender: Gender.MALE,
+  dateOfBirth: '1993-05-15',
+  address: '123 Main Street, Gulberg',
+  city: 'Lahore',
+  country: 'Pakistan',
+  profilePicture: 'assets/images/profiles/user456.jpg',
+
+  savedPassengers: [
+    {
+      id: 'passenger1',
+      name: 'Muhammad Ali',
+      gender: Gender.MALE,
+      seatNumber: '1A',
+      bookedById: 'user456'
     },
-    bookingHistory: [
-      {
-        id: 'booking123',
-        from: 'Lahore',
-        to: 'Islamabad',
-        date: '2025-05-27',
-        status: BookingStatus.CONFIRMED,
-        amount: 5000
-      },
-      {
-        id: 'booking101',
-        from: 'Lahore',
-        to: 'Karachi',
-        date: '2025-04-15',
-        status: BookingStatus.COMPLETED,
-        amount: 8500
-      }
-    ],
-    preferences: {
-      seatPreference: 'window',
-      notificationPreferences: {
-        email: true,
-        sms: true,
-        pushNotifications: true
-      },
-      currency: 'PKR',
-      language: 'en'
+    {
+      id: 'passenger2',
+      name: 'Fatima Khan',
+      gender: Gender.FEMALE,
+      seatNumber: '1B',
+      bookedById: 'user456'
+    }
+  ],
+  savedPaymentMethods: [
+    {
+      id: 'pm_user1',
+      type: 'credit_card',
+      lastFourDigits: '4242',
+      expiryDate: '05/28',
+      cardHolderName: 'Muhammad Ali',
+      isDefault: true
     },
-    membershipStatus: 'gold',
-    membershipPoints: 1250,
-    registrationDate: '2024-01-15',
-    lastLoginDate: '2025-05-26T10:15:00Z'
-  };
+    {
+      id: 'pm_user2',
+      type: 'easypaisa',
+      isDefault: false
+    }
+  ],
+  bookingHistory: [
+    {
+      id: 'booking123',
+      from: 'Lahore',
+      to: 'Islamabad',
+      date: '2025-05-27',
+      status: BookingStatus.CONFIRMED,
+      amount: 5000
+    },
+    {
+      id: 'booking101',
+      from: 'Lahore',
+      to: 'Karachi',
+      date: '2025-04-15',
+      status: BookingStatus.COMPLETED,
+      amount: 8500
+    }
+  ]
+}
   
   // API ENDPOINTS =============================================
   export const API_ENDPOINTS = {
     // Bus Routes
     GET_BUS_ROUTES: '/api/bus-routes',
     GET_POPULAR_ROUTES: '/api/bus-routes?popular=true',
+    GET_ROUTE_DETAILS: (routeId: string) => `/api/bus-routes/${routeId}`,
+    SEARCH_ROUTES: '/api/bus-routes/search',
+    
+    // Bus Companies
+    GET_BUS_COMPANIES: '/api/bus-companies',
+    GET_COMPANY_DETAILS: (companyId: string) => `/api/bus-companies/${companyId}`,
+    GET_COMPANY_REVIEWS: (companyId: string) => `/api/bus-companies/${companyId}/reviews`,
     
     // Bus Schedules
     GET_BUS_SCHEDULES: '/api/bus-schedules',
     GET_SCHEDULES_BY_ROUTE: (routeId: string, date: string) => `/api/bus-schedules?routeId=${routeId}&date=${date}`,
+    GET_SCHEDULE_DETAILS: (scheduleId: string) => `/api/bus-schedules/${scheduleId}`,
     
     // Bus Details and Seats
     GET_BUS_DETAILS: (busId: string) => `/api/buses/${busId}`,
     GET_BUS_SEAT_AVAILABILITY: (busId: string, scheduleId: string) => `/api/buses/${busId}/seats?scheduleId=${scheduleId}`,
+    GET_SEAT_PRICING: (busId: string, scheduleId: string) => `/api/buses/${busId}/seats/pricing?scheduleId=${scheduleId}`,
+    BLOCK_SEATS: (busId: string) => `/api/buses/${busId}/seats/block`,
+    
+    // Boarding & Dropping Points
+    GET_BOARDING_POINTS: (scheduleId: string) => `/api/schedules/${scheduleId}/boarding-points`,
+    GET_DROPPING_POINTS: (scheduleId: string) => `/api/schedules/${scheduleId}/dropping-points`,
     
     // Passenger Details
     POST_PASSENGER_DETAILS: (bookingId: string) => `/api/bookings/${bookingId}/passengers`,
     GET_SAVED_PASSENGERS: (userId: string) => `/api/users/${userId}/saved-passengers`,
+    SAVE_PASSENGER: (userId: string) => `/api/users/${userId}/saved-passengers`,
+    DELETE_SAVED_PASSENGER: (userId: string, passengerId: string) => `/api/users/${userId}/saved-passengers/${passengerId}`,
     
     // Bookings
     CREATE_BOOKING: '/api/bookings',
     GET_BOOKING_DETAILS: (bookingId: string) => `/api/bookings/${bookingId}`,
     UPDATE_BOOKING_STATUS: (bookingId: string) => `/api/bookings/${bookingId}/status`,
-    
-    // Promo Codes
-    VALIDATE_PROMO_CODE: '/api/promocodes/validate',
+    CANCEL_BOOKING: (bookingId: string) => `/api/bookings/${bookingId}/cancel`,
+    GET_USER_BOOKINGS: (userId: string) => `/api/users/${userId}/bookings`,
+    GET_BOOKING_RECEIPT: (bookingId: string) => `/api/bookings/${bookingId}/receipt`,
     
     // Payment
     PROCESS_PAYMENT: '/api/payments',
-    GET_PAYMENT_STATUS: (paymentId: string) => `/api/payments/${paymentId}`
+    GET_PAYMENT_STATUS: (paymentId: string) => `/api/payments/${paymentId}`,
+    GET_PAYMENT_METHODS: '/api/payment-methods',
+    SAVE_PAYMENT_METHOD: (userId: string) => `/api/users/${userId}/payment-methods`,
+    DELETE_PAYMENT_METHOD: (userId: string, methodId: string) => `/api/users/${userId}/payment-methods/${methodId}`,
+    INITIATE_REFUND: (bookingId: string) => `/api/bookings/${bookingId}/refund`,
+    
+    // User Profile
+    GET_USER_PROFILE: (userId: string) => `/api/users/${userId}`,
+    UPDATE_USER_PROFILE: (userId: string) => `/api/users/${userId}`,
+    GET_USER_NOTIFICATIONS: (userId: string) => `/api/users/${userId}/notifications`,
+    
+    // Reviews & Ratings
+    POST_BOOKING_REVIEW: (bookingId: string) => `/api/bookings/${bookingId}/review`,
+    GET_USER_REVIEWS: (userId: string) => `/api/users/${userId}/reviews`
   };

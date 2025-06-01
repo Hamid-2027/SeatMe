@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "211288303829",
+    "project_id": "seatme-cd356",
+    "storage_bucket": "seatme-cd356.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211288303829:android:3442ee09d1b5234c751a5c",
+        "android_client_info": {
+          "package_name": "com.chalogb.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211288303829-tul76i2naiouvn6bqfbduc0d8apnc4g9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chalogb.app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "211288303829-63kqnb1d6n699n65sdnrmnah1i2fpk18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnI6eXSXAarjko4zXqU-62hqqyxUd_RDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211288303829-63kqnb1d6n699n65sdnrmnah1i2fpk18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

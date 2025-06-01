@@ -4,6 +4,8 @@ import BottomTabNavigator from './BottomTabNavigator';
 import SearchBusScreen from '../screens/search-bus-screen';
 import PaymentFlowMainScreen from '../screens/payment-flow/payment-flow-main-screen';
 import PaymentScreen from '../screens/payment-flow/payment-screen';
+import SignupScreen from '../screens/signup-screen';
+import ProfileScreen from '../screens/profile-screen';
 
 // Define the type for the root stack navigator
 export type RootStackParamList = {
@@ -11,6 +13,8 @@ export type RootStackParamList = {
   searchBusScreen: { source: string; destination: string }; 
   PaymentFlowMainScreen: undefined;
   PaymentScreen: undefined;
+  Signup: undefined;
+  Profile: undefined;
 };
 
 export type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -24,6 +28,8 @@ export default function MainAppStack() {
       <Stack.Screen name="searchBusScreen" component={SearchBusScreen} />
       <Stack.Screen name="PaymentFlowMainScreen" component={PaymentFlowMainScreen} />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 } 

@@ -1,4 +1,4 @@
-package com.seatme.app
+package com.chalogb.app
 
 import android.app.Application
 import android.content.res.Configuration

@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.seatme.app"
+      "bundleIdentifier": "com.chalogb.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +23,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.seatme.app"
+      "package": "com.chalogb.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

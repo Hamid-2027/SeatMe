@@ -48,4 +48,9 @@ for dummy and static data , array or object define all the statics large data ex
 
 
 screen and componets name rules:
-Create all screen and components  file stucture instead of camal case in this form like 'DummyBusCard' to dummy-bus-card.tsx , AddPassengerDetailsComponent to add-passenger-details-component and 
+Create all screen and components  file stucture instead of camal case in this form like 'DummyBusCard' to dummy-bus-card.tsx , AddPassengerDetailsComponent to add-passenger-details-component.
+
+
+for using the color in the screen and  components
+you have to define it or used the predefined colors from the color.ts files inside the utils which is inside the src.
+you have to import the

@@ -9,17 +9,8 @@ buildscript {
     classpath('com.android.tools.build:gradle')
     classpath('com.facebook.react:react-native-gradle-plugin')
     classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
+    classpath('com.google.gms:google-services:4.4.2')
   }
-}
-
-// Define versions in a single place
-ext {
-  // SDK and tools
-  minSdkVersion = 21
-  targetSdkVersion = 34
-  compileSdkVersion = 34
-  buildToolsVersion = "34.0.0"
-  ndkVersion = "26.1.10909125"
 }
 
 def reactNativeAndroidDir = new File(
@@ -45,3 +36,5 @@ allprojects {
 
 apply plugin: "expo-root-project"
 apply plugin: "com.facebook.react.rootproject"
+apply plugin: "com.google.gms.google-services"
+
